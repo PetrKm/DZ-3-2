@@ -26,8 +26,7 @@ public class Main {
 
         List<String> conscriptList = persons.stream()
                 .filter(person -> person.getSex() == Sex.MAN)
-                .filter(person -> person.getAge() >= 18)
-                .filter(person -> person.getAge() <= 27)
+                .filter(person -> person.getAge() >= 18 && person.getAge() < 27)
                 .map(person -> person.getFamily())
                 .collect(Collectors.toList());
 
@@ -35,22 +34,9 @@ public class Main {
 
         Collection<Person> workersHigherEdWoman = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
-                .filter(person -> person.getAge() > 18)
-                .filter(person -> person.getAge() < 60)
-                .filter(person -> person.getSex() == Sex.WOMAN)
-                .sorted(Comparator.comparing(person -> person.getFamily()))
+                .filter(person -> person.getAge() >= 18 && person.getSex() == Sex.MAN ? person.getAge() < 65 : person.getAge() < 60)
                 .collect(Collectors.toList());
 
         System.out.println(workersHigherEdWoman.size());
-
-        Collection<Person> workersHigherEdMan = persons.stream()
-                .filter(person -> person.getEducation() == Education.HIGHER)
-                .filter(person -> person.getAge() > 18)
-                .filter(person -> person.getAge() < 65)
-                .filter(person -> person.getSex() == Sex.MAN)
-                .sorted(Comparator.comparing(person -> person.getFamily()))
-                .collect(Collectors.toList());
-
-        System.out.println(workersHigherEdMan.size());
     }
 }
