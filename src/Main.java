@@ -35,6 +35,7 @@ public class Main {
         Collection<Person> workersHigherEdWoman = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
                 .filter(person -> person.getAge() >= 18 && person.getSex() == Sex.MAN ? person.getAge() < 65 : person.getAge() < 60)
+                .sorted(Comparator.comparing(person -> person.getFamily()))
                 .collect(Collectors.toList());
 
         System.out.println(workersHigherEdWoman.size());
