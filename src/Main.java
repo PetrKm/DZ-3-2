@@ -32,12 +32,12 @@ public class Main {
 
         System.out.println(conscriptList.size());
 
-        List<String> workersHigherEdWoman = persons.stream()
+        List<String> workersHigherEd = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
                 .filter(person -> person.getAge() >= 18 && person.getSex() == Sex.MAN ? person.getAge() < 65 : person.getAge() < 60)
                 .sorted(Comparator.comparing(person -> person.getFamily()))
                 .collect(Collectors.toList());
 
-        System.out.println(workersHigherEdWoman.size());
+        System.out.println(workersHigherEd.size());
     }
 }
